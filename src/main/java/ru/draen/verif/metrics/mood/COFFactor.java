@@ -16,6 +16,6 @@ public class COFFactor implements MOODFactor {
             }
         }
         double result = ((double) c) / (n * (n - 1));
-        return new MetricResult(result);
+        return new MetricResult("COF", result);
     }
 }

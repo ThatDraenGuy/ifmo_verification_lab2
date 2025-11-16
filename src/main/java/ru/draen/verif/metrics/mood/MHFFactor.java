@@ -19,6 +19,6 @@ public class MHFFactor implements MOODFactor {
             mhv += mhi + mvi;
         }
         double result = ((double) mh) / mhv;
-        return new MetricResult(result);
+        return new MetricResult("MHF", result);
     }
 }
