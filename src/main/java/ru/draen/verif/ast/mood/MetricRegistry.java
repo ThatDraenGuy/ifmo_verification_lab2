@@ -15,7 +15,7 @@ public class MetricRegistry {
     private final Map<String, Set<String>> coupledByClass = new HashMap<>();
 
     private boolean isNonProject(String identifier) {
-        return identifier.startsWith("java.");
+        return identifier.startsWith("java.") || identifier.startsWith("com.");
     }
 
     public void addClass(String className) {

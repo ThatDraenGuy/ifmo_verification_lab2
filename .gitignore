@@ -1,4 +1,5 @@
-projects/
+results/
+libs/
 
 target/
 !.mvn/wrapper/maven-wrapper.jar
