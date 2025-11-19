@@ -11,7 +11,7 @@ public class POFFactor implements MOODFactor {
         long mnd = 0;
         for (var clazz : program.classes()) {
             long mdi = clazz.methods().stream()
-                    .filter(method -> !method.inherited())
+                    .filter(method -> !method.inherited() && !method.overridden())
                     .count();
             long moi = clazz.methods().stream()
                     .filter(MethodModel::overridden)
