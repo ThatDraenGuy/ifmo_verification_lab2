@@ -22,23 +22,30 @@ public class MetricRegistry {
         classes.add(className);
     }
 
+    private<T> List<T> computeList(String key) {
+        return new ArrayList<>();
+    }
+    private<T> Set<T> computeSet(String key) {
+        return new HashSet<>();
+    }
+
     public void addInheritance(String parent, String child) {
         if (isNonProject(parent)) return;
-        childrenByClass.computeIfAbsent(parent, k -> new ArrayList<>()).add(child);
+        childrenByClass.computeIfAbsent(parent, this::computeList).add(child);
     }
 
     public void addCoupling(String from, String to) {
         if (isNonProject(to)) return;
-        coupledByClass.computeIfAbsent(from, k -> new HashSet<>()).add(to);
+        coupledByClass.computeIfAbsent(from, this::computeSet).add(to);
     }
 
     public void addMethod(String className, MethodModel methodModel) {
         if (isNonProject(methodModel.name())) return;
-        methodsByClass.computeIfAbsent(className, k -> new ArrayList<>()).add(methodModel);
+        methodsByClass.computeIfAbsent(className, this::computeList).add(methodModel);
     }
 
     public void addAttr(String className, AttributeModel attrModel) {
-        attrsByClass.computeIfAbsent(className, k -> new ArrayList<>()).add(attrModel);
+        attrsByClass.computeIfAbsent(className, this::computeList).add(attrModel);
     }
 
     public ProgramModel construct() {
